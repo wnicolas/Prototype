@@ -5,10 +5,10 @@ import java.awt.image.*;
 
 import javax.swing.*;
 
-public class Sprite extends JFrame implements Runnable{
-
-	private int anchoVentana=500;
-	private int altoVentana=500;
+public class Sprite extends JFrame implements Runnable,Prototype{
+	
+	private int anchoVentana=256;
+	private int altoVentana=256;
 	
 	private Image image;
 	private Thread hilo;
@@ -16,12 +16,13 @@ public class Sprite extends JFrame implements Runnable{
 	private BufferedImage bi;
 	
 	public Sprite() {
+		
 		this.setSize(anchoVentana,altoVentana);
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle("Animación");
-		this.setVisible(true);
+		//this.setVisible(true);
 
 		hilo=new Thread(this);
 		bi=new BufferedImage(anchoVentana,altoVentana,BufferedImage.TYPE_INT_RGB);
@@ -41,7 +42,7 @@ public class Sprite extends JFrame implements Runnable{
 		g2d=bi.createGraphics();
 		g2d.fillRect(0, 0, anchoVentana,altoVentana);
 		
-		g2d.drawImage(image, 122, 122, 122+256, 122+256, mx, my, mx+256, my+256, this);
+		g2d.drawImage(image, 0, 0, 256, 256, mx, my, mx+256, my+256, this);
 		repaint();
 		
 	}
@@ -60,6 +61,21 @@ public class Sprite extends JFrame implements Runnable{
 				incremento=0;
 			}
 		}
+	}
+
+	@Override
+	public Prototype clonar() {
+		
+		Sprite clon=null;
+		
+		try {
+			clon=(Sprite) clone();
+		} catch (CloneNotSupportedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return clon;
 	}
 	
 	

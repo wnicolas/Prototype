@@ -3,7 +3,13 @@ package catalogopersonajes;
 public class Principal {
 
 	public static void main(String[] args) {
-		Sprite ventana=new Sprite();
+		Sprite animacion=new Sprite();
+		Sprite animacionClonada=(Sprite)animacion.clonar();
+		
+		animacion.setVisible(true);
+		animacionClonada.setVisible(true);
+		
+		
 	}
 
 }
