@@ -22,13 +22,12 @@ public class Sprite extends JFrame implements Runnable,Prototype{
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle("Animación");
-		//this.setVisible(true);
 
 		hilo=new Thread(this);
+		hilo.start();
 		bi=new BufferedImage(anchoVentana,altoVentana,BufferedImage.TYPE_INT_RGB);
 		Toolkit herramienta=Toolkit.getDefaultToolkit();
 		image=herramienta.getImage(getClass().getResource("/imagenes/Sprite.png"));
-		hilo.start();
 		
 	}
 	
