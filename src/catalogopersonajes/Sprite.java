@@ -72,10 +72,6 @@ public class Sprite extends JFrame implements Runnable,Prototype{
 		Sprite clon=null;
 		
 		try {
-			hilo=new Thread();
-			hilo.start();
-			//-------------------------------
-			
 			clon=(Sprite)clone();
 			clon.hilo=new Thread(this.hilo);
 			
