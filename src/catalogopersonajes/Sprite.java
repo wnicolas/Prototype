@@ -11,7 +11,7 @@ public class Sprite extends JFrame implements Runnable,Prototype{
 	private int altoVentana=256;
 	
 	private Image image;
-	private Thread hilo;
+	Thread hilo;
 	private int incremento=0;
 	private BufferedImage bi;
 	
@@ -23,12 +23,16 @@ public class Sprite extends JFrame implements Runnable,Prototype{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle("Animación");
 
-		hilo=new Thread(this);
-		hilo.start();
+		this.arrancarHilo();
 		bi=new BufferedImage(anchoVentana,altoVentana,BufferedImage.TYPE_INT_RGB);
 		Toolkit herramienta=Toolkit.getDefaultToolkit();
 		image=herramienta.getImage(getClass().getResource("/imagenes/Sprite.png"));
 		
+	}
+	
+	public void arrancarHilo() {
+		hilo=new Thread(this);
+		hilo.start();
 	}
 	
 	public void paint(Graphics g) {
@@ -68,7 +72,13 @@ public class Sprite extends JFrame implements Runnable,Prototype{
 		Sprite clon=null;
 		
 		try {
-			clon=(Sprite) clone();
+			hilo=new Thread();
+			hilo.start();
+			//-------------------------------
+			
+			clon=(Sprite)clone();
+			clon.hilo=new Thread(this.hilo);
+			
 		} catch (CloneNotSupportedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
