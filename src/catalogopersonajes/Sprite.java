@@ -7,7 +7,7 @@ import javax.swing.*;
 
 public class Sprite extends JFrame implements Runnable,Prototype{
 	
-	private int anchoVentana=256;
+	private int anchoVentana=720;
 	private int altoVentana=256;
 	
 	private Image image;
@@ -21,7 +21,7 @@ public class Sprite extends JFrame implements Runnable,Prototype{
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setTitle("Animación");
+		this.setTitle("Animaciï¿½n");
 
 		this.arrancarHilo();
 		bi=new BufferedImage(anchoVentana,altoVentana,BufferedImage.TYPE_INT_RGB);
@@ -45,7 +45,7 @@ public class Sprite extends JFrame implements Runnable,Prototype{
 		g2d=bi.createGraphics();
 		g2d.fillRect(0, 0, anchoVentana,altoVentana);
 		
-		g2d.drawImage(image, 0, 0, 256, 256, mx, my, mx+256, my+256, this);
+		g2d.drawImage(image, incremento*100, 0, 256+incremento*100, 256, mx, my, mx+256, my+256, this);
 		repaint();
 		
 	}
@@ -54,7 +54,7 @@ public class Sprite extends JFrame implements Runnable,Prototype{
 	public void run() {
 		while(true) {
 			try {
-				Thread.sleep(50);
+				Thread.sleep(100);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
